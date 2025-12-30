@@ -14,7 +14,7 @@ def download_timetable(config):
         for stop_name, stop_data in config["stops"].items():
             for line in stop_data["lines"]:
                 response = requests.get(
-                    f"https://api.um.warszawa.pl/api/action/dbtimetable_get?id=e923fa0e-d96c-43f9-ae6e-60518c9f3238&busstopId={stop_data["busstopId"]}&busstopNr={stop_data["busstopNr"]}&line={line}&apikey={APIKEY}"
+                    f"https://api.um.warszawa.pl/api/action/dbtimetable_get?id=e923fa0e-d96c-43f9-ae6e-60518c9f3238&busstopId={stop_data['busstopId']}&busstopNr={stop_data['busstopNr']}&line={line}&apikey={APIKEY}"
                 )
                 for record in response.json()["result"]:
                     stop_time, direction = (None, None)
@@ -41,5 +41,5 @@ def get_departures_string(timetable, time, n=8):
             break
     result = ""
     for record in upcoming_departures:
-        result += f"{record["line"]:<6}{record["direction"]:<24}{record["stop_time"] - time} min\n"
+        result += f"{record['line']:<5}{record['direction']:<24}{record['stop_time'] - time} min\n"
     return result
