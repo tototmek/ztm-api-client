@@ -1,0 +1,16 @@
+port: 21370
+stops:
+  Czynszowa:
+    busstopNr: '01'
+    busstopId: 1069
+    lines:
+    - 23
+    direction_blacklist:
+    - Czynszowa
+  Rzeszotarskiej:
+    busstopNr: '01'
+    busstopId: 1052
+    lines:
+    - 190
+    - 120
+    direction_blacklist: []
