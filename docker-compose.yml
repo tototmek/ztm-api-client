@@ -1,0 +1,7 @@
+services:
+  influxdb:
+    container_name: ztm-server
+    image: ztm-server
+    ports:
+      - "21370:21370"
+    restart: unless-stopped
