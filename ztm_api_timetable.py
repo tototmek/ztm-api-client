@@ -31,7 +31,7 @@ def download_timetable(config):
 
         return timetable
 
-def get_departures_string(timetable, time, n=8):
+def get_departures_string(timetable, time, n, config):
     upcoming_departures = []
     for record in timetable:
         if time >= record["stop_time"]:
@@ -41,5 +41,14 @@ def get_departures_string(timetable, time, n=8):
             break
     result = ""
     for record in upcoming_departures:
-        result += f"{record['line']:<5}{record['direction']:<24}{record['stop_time'] - time} min\n"
+        line_len = 5
+        line_str = str(record['line']).ljust(line_len)
+        time_str = f"{record['stop_time'] - time} min"
+        time_len = len(time_str)
+        name_len = config['max_strlen'] - line_len - time_len - 1
+        name_str = record['direction']
+        if len(name_str) > name_len:
+            name_str = name_str[:name_len-1] + "…"
+        name_str = name_str.ljust(name_len)
+        result += f"{line_str}{name_str} {time_str}\n"
     return result

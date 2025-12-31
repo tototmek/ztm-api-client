@@ -1,4 +1,5 @@
 port: 21370
+max_strlen: 26
 stops:
   Czynszowa:
     busstopNr: '01'

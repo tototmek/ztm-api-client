@@ -30,7 +30,7 @@ scheduler.start()
 async def generate_string(n: int):
     current_time = datetime.now()
     current_time = current_time.hour * 60 + current_time.minute
-    return {"message": get_departures_string(timetable, current_time, n), "status": status}
+    return {"message": get_departures_string(timetable, current_time, n, config), "status": status}
 
 
 if __name__ == "__main__":
