@@ -48,7 +48,8 @@ def get_departures_string(timetable, time, n, config):
         name_len = config['max_strlen'] - line_len - time_len - 1
         name_str = record['direction']
         if len(name_str) > name_len:
-            name_str = name_str[:name_len-1] + "…"
-        name_str = name_str.ljust(name_len)
-        result += f"{line_str}{name_str} {time_str}\n"
+            name_str = name_str[:name_len-2] + "..."
+        else:
+            name_str = name_str.ljust(name_len)+" "
+        result += f"{line_str}{name_str}{time_str}\n"
     return result
